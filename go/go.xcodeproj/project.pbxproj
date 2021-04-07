@@ -17,6 +17,8 @@
 		26D60111261D991800E1A4D7 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6010E261D991800E1A4D7 /* Property.swift */; };
 		26D60112261D991800E1A4D7 /* RCUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6010F261D991800E1A4D7 /* RCUserDefaults.swift */; };
 		26D60113261D991800E1A4D7 /* RCUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6010F261D991800E1A4D7 /* RCUserDefaults.swift */; };
+		26D60117261D9B8800E1A4D7 /* extern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D60116261D9B8800E1A4D7 /* extern.swift */; };
+		26D60118261D9B8800E1A4D7 /* extern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D60116261D9B8800E1A4D7 /* extern.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,7 @@
 		26D600FC261D98B500E1A4D7 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		26D6010E261D991800E1A4D7 /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		26D6010F261D991800E1A4D7 /* RCUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCUserDefaults.swift; sourceTree = "<group>"; };
+		26D60116261D9B8800E1A4D7 /* extern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extern.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,7 @@
 				26D600EA261D98B300E1A4D7 /* goApp.swift */,
 				26D600EB261D98B300E1A4D7 /* ContentView.swift */,
 				26D600EC261D98B500E1A4D7 /* Assets.xcassets */,
+				26D60116261D9B8800E1A4D7 /* extern.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -203,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D60117261D9B8800E1A4D7 /* extern.swift in Sources */,
 				26D60110261D991800E1A4D7 /* Property.swift in Sources */,
 				26D600FF261D98B500E1A4D7 /* ContentView.swift in Sources */,
 				26D600FD261D98B500E1A4D7 /* goApp.swift in Sources */,
@@ -214,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D60118261D9B8800E1A4D7 /* extern.swift in Sources */,
 				26D60111261D991800E1A4D7 /* Property.swift in Sources */,
 				26D60100261D98B500E1A4D7 /* ContentView.swift in Sources */,
 				26D600FE261D98B500E1A4D7 /* goApp.swift in Sources */,

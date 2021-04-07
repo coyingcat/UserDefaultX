@@ -8,6 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    
+    init(){
+        // one()
+        RCUserDefaults.standard.name = "前进"
+        print(RCUserDefaults.standard.name)
+    }
+    
+    
+    func one(){
+        RCUserDefaults.standard.string = "string"
+        assert(RCUserDefaults.standard.string == "string")
+        RCUserDefaults.standard.stringOptional = nil
+
+        assert(RCUserDefaults.standard.stringOptional == nil)
+    }
+    
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
