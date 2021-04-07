@@ -40,7 +40,7 @@ struct Property {
 
     let name: String
 
-    private(set) var typeEncoding: ObjCTypeEncoding = .unknown("?")
+    private(set) var typeEncoding = ObjCTypeEncoding.unknown("?")
 
     private(set) var type: NSObject.Type?
 
@@ -50,7 +50,7 @@ struct Property {
     /// The property defines a custom setter selector name. The name follows the S (for example, ScustomSetter:,).
     private(set) var customSetter: String?
 
-    init(_ property: objc_property_t) {
+    init(x property: objc_property_t) {
         self.name = String(cString: property_getName(property))
 
         var count: UInt32 = 0
@@ -69,13 +69,15 @@ struct Property {
                     value = value
                         .replacingOccurrences(of: "@\"", with: "")
                         .replacingOccurrences(of: "\"", with: "")
-                } else if value.hasPrefix("r") { // const
+                }
+                else if value.hasPrefix("r") { // const
                     value = value.replacingOccurrences(of: "r", with: "")
                 }
-                if classExists(value) {
+                if classExists(n: value) {
                     self.typeEncoding = ObjCTypeEncoding("@")
-                    self.type = getClass(value)
-                } else {
+                    self.type = getClass(n: value)
+                }
+                else {
                     self.typeEncoding = ObjCTypeEncoding(value)
                 }
             case "G":
@@ -99,18 +101,17 @@ extension NSObject {
         var properties = [Property]()
 
         for i in 0..<count {
-            properties.append(Property(propertyList[Int(i)]))
+            properties.append(Property(x: propertyList[Int(i)]))
         }
-
         free(propertyList)
         return properties
     }
 }
 
-func classExists(_ name: String) -> Bool {
+func classExists(n name: String) -> Bool {
     return objc_getClass(name.cString(using: .utf8)!) != nil
 }
 
-func getClass(_ name: String) -> NSObject.Type? {
+func getClass(n name: String) -> NSObject.Type? {
     return objc_getClass(name.cString(using: .utf8)!) as? NSObject.Type
 }
