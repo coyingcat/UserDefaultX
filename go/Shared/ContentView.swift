@@ -11,20 +11,17 @@ struct ContentView: View {
     
     
     init(){
-        // one()
-        RCUserDefaults.standard.name = "前进"
-        print(RCUserDefaults.standard.name)
-    }
-    
-    
-    func one(){
-        RCUserDefaults.standard.string = "string"
-        assert(RCUserDefaults.standard.string == "string")
-        RCUserDefaults.standard.stringOptional = nil
 
-        assert(RCUserDefaults.standard.stringOptional == nil)
+        UserDefaults.std.name = "one"
+        
+        print(UserDefaults.std.name)
+        
+        UserDefaults.std.name = "two"
+        
+        print(UserDefaults.std.name)
     }
     
+
     
     var body: some View {
         Text("Hello, world!")

@@ -8,11 +8,12 @@
 
 import Foundation
 
-class RCUserDefaults: NSObject {
 
-    public static let standard = RCUserDefaults()
+class RCUserDefaults: NSObject{
 
-    public let userDefaults = UserDefaults.standard
+    fileprivate static let standard = RCUserDefaults()
+
+    private let userDefaults = UserDefaults.standard
 
     private static var mapping = [String: Property]()
 
@@ -22,8 +23,8 @@ class RCUserDefaults: NSObject {
         exchangeAccessMethods()
     }
     
-    private static func defaultKeyForSelector(_ sel: Selector) -> String {
-        let selName = NSStringFromSelector(sel)
+    private static func defaultKey(for selector: Selector) -> String {
+        let selName = NSStringFromSelector(selector)
         return mapping[selName]!.name
     }
 }
@@ -91,65 +92,72 @@ extension RCUserDefaults {
 
     // block
     private static let objectGetter: @convention(c) (RCUserDefaults, Selector) -> Any? = { _userDefault, _cmd in
-        let key = defaultKeyForSelector(_cmd)
+        let key = defaultKey(for: _cmd)
         return _userDefault.userDefaults.object(forKey: key)
     }
 
     private static let objectSetter: @convention(c) (RCUserDefaults, Selector, Any?) -> Void = { _userDefault, _cmd, value in
-        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
+        let key = RCUserDefaults.defaultKey(for: _cmd)
         _userDefault.userDefaults.set(value, forKey: key)
     }
 
     private static let boolGetter: @convention(c) (RCUserDefaults, Selector) -> Bool = { _userDefault, _cmd in
-        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
+        let key = RCUserDefaults.defaultKey(for: _cmd)
         return _userDefault.userDefaults.bool(forKey: key)
     }
 
     private static let boolSetter: @convention(c) (RCUserDefaults, Selector, Bool) -> Void = { _userDefault, _cmd, value in
-        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
+        let key = RCUserDefaults.defaultKey(for: _cmd)
         _userDefault.userDefaults.set(value, forKey: key)
     }
 
     private static let longGetter: @convention(c) (RCUserDefaults, Selector) -> CLong = { _userDefault, _cmd in
-        let key = defaultKeyForSelector(_cmd)
+        let key = defaultKey(for: _cmd)
         return _userDefault.userDefaults.integer(forKey: key)
     }
 
     private static let longSetter: @convention(c) (RCUserDefaults, Selector, CLong) -> Void = { _userDefault, _cmd, value in
-        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
+        let key = RCUserDefaults.defaultKey(for: _cmd)
         _userDefault.userDefaults.set(value, forKey: key)
     }
 
     private static let longLongGetter: @convention(c) (RCUserDefaults, Selector) -> CLongLong = { _userDefault, _cmd in
-        let key = defaultKeyForSelector(_cmd)
+        let key = defaultKey(for: _cmd)
         let value = _userDefault.userDefaults.integer(forKey: key)
         return CLongLong(value)
     }
 
     private static let longLongSetter: @convention(c) (RCUserDefaults, Selector, CLongLong) -> Void = { _userDefault, _cmd, value in
-        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
+        let key = RCUserDefaults.defaultKey(for: _cmd)
         _userDefault.userDefaults.set(Int(value), forKey: key)
     }
 
     private static let doubleGetter: @convention(c) (RCUserDefaults, Selector) -> CDouble = { _userDefault, _cmd in
-        let key = defaultKeyForSelector(_cmd)
+        let key = defaultKey(for: _cmd)
         let value = _userDefault.userDefaults.double(forKey: key)
         return CDouble(value)
     }
 
     private static let doubleSetter: @convention(c) (RCUserDefaults, Selector, CDouble) -> Void = { _userDefault, _cmd, value in
-        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
+        let key = RCUserDefaults.defaultKey(for: _cmd)
         _userDefault.userDefaults.set(Double(value), forKey: key)
     }
 
     private static let floatGetter: @convention(c) (RCUserDefaults, Selector) -> CFloat = { _userDefault, _cmd in
-        let key = defaultKeyForSelector(_cmd)
+        let key = defaultKey(for: _cmd)
         let value = _userDefault.userDefaults.float(forKey: key)
         return CFloat(value)
     }
 
     private static let floatSetter: @convention(c) (RCUserDefaults, Selector, CFloat) -> Void = { _userDefault, _cmd, value in
-        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
+        let key = RCUserDefaults.defaultKey(for: _cmd)
         _userDefault.userDefaults.set(value, forKey: key)
+    }
+}
+
+
+extension UserDefaults{
+    static var std: RCUserDefaults{
+        return RCUserDefaults.standard
     }
 }
