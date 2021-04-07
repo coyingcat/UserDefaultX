@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias _Self = RCUserDefaults
-
 class RCUserDefaults: NSObject {
 
     public static let standard = RCUserDefaults()
@@ -36,14 +34,14 @@ class RCUserDefaults: NSObject {
 extension RCUserDefaults {
 
     private func exchangeAccessMethods() {
-        let properties = _Self.properties
+        let properties = RCUserDefaults.properties
 
         for (_, property) in properties.enumerated() {
 
             let getterKey = property.customGetter ?? property.name
             let setterKey = property.customSetter ?? objCDefaultSetterName(for: property.name)
-            _Self.mapping[getterKey] = property
-            _Self.mapping[setterKey] = property
+            RCUserDefaults.mapping[getterKey] = property
+            RCUserDefaults.mapping[setterKey] = property
 
             let getterSel : Selector = NSSelectorFromString(getterKey)
             let setterSel : Selector = NSSelectorFromString(setterKey)
@@ -52,20 +50,20 @@ extension RCUserDefaults {
             var setterImp: IMP!
             switch property.typeEncoding {
             case .int, .longLong:
-                getterImp = unsafeBitCast(_Self.longGetter, to: IMP.self)
-                setterImp = unsafeBitCast(_Self.longSetter, to: IMP.self)
+                getterImp = unsafeBitCast(RCUserDefaults.longGetter, to: IMP.self)
+                setterImp = unsafeBitCast(RCUserDefaults.longSetter, to: IMP.self)
             case .bool, .char:
-                getterImp = unsafeBitCast(_Self.boolGetter, to: IMP.self)
-                setterImp = unsafeBitCast(_Self.boolSetter, to: IMP.self)
+                getterImp = unsafeBitCast(RCUserDefaults.boolGetter, to: IMP.self)
+                setterImp = unsafeBitCast(RCUserDefaults.boolSetter, to: IMP.self)
             case .float:
-                getterImp = unsafeBitCast(_Self.floatGetter, to: IMP.self)
-                setterImp = unsafeBitCast(_Self.floatSetter, to: IMP.self)
+                getterImp = unsafeBitCast(RCUserDefaults.floatGetter, to: IMP.self)
+                setterImp = unsafeBitCast(RCUserDefaults.floatSetter, to: IMP.self)
             case .double:
-                getterImp = unsafeBitCast(_Self.doubleGetter, to: IMP.self)
-                setterImp = unsafeBitCast(_Self.doubleSetter, to: IMP.self)
+                getterImp = unsafeBitCast(RCUserDefaults.doubleGetter, to: IMP.self)
+                setterImp = unsafeBitCast(RCUserDefaults.doubleSetter, to: IMP.self)
             case .object:
-                getterImp = unsafeBitCast(_Self.objectGetter, to: IMP.self)
-                setterImp = unsafeBitCast(_Self.objectSetter, to: IMP.self)
+                getterImp = unsafeBitCast(RCUserDefaults.objectGetter, to: IMP.self)
+                setterImp = unsafeBitCast(RCUserDefaults.objectSetter, to: IMP.self)
             default:
                 NSException(name:NSExceptionName(rawValue: "exchangeAccessMethods"), reason:"Unsupported type of property", userInfo:nil).raise()
             }
@@ -93,68 +91,68 @@ extension RCUserDefaults {
 /// Getter and Setter Methods
 extension RCUserDefaults {
 
-    private static let objectGetter: @convention(c) (_Self, Selector) -> Any? = { _self, _cmd in
+    private static let objectGetter: @convention(c) (RCUserDefaults, Selector) -> Any? = { _self, _cmd in
         let key = defaultKeyForSelector(_cmd)
         return _self.userDefaults.object(forKey: key)
     }
 
-    private static let objectSetter: @convention(c) (_Self, Selector, Any?) -> Void = { _self, _cmd, value in
-        let key = _Self.defaultKeyForSelector(_cmd)
+    private static let objectSetter: @convention(c) (RCUserDefaults, Selector, Any?) -> Void = { _self, _cmd, value in
+        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
         _self.userDefaults.set(value, forKey: key)
     }
 
-    private static let boolGetter: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
-        let key = _Self.defaultKeyForSelector(_cmd)
+    private static let boolGetter: @convention(c) (RCUserDefaults, Selector) -> Bool = { _self, _cmd in
+        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
         let value = _self.userDefaults.bool(forKey: key)
         return (value)
     }
 
-    private static let boolSetter: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
-        let key = _Self.defaultKeyForSelector(_cmd)
+    private static let boolSetter: @convention(c) (RCUserDefaults, Selector, Bool) -> Void = { _self, _cmd, value in
+        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
         _self.userDefaults.set(value, forKey: key)
     }
 
-    private static let longGetter: @convention(c) (_Self, Selector) -> CLong = { _self, _cmd in
+    private static let longGetter: @convention(c) (RCUserDefaults, Selector) -> CLong = { _self, _cmd in
         let key = defaultKeyForSelector(_cmd)
         let value = _self.userDefaults.integer(forKey: key)
         return (value)
     }
 
-    private static let longSetter: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
-        let key = _Self.defaultKeyForSelector(_cmd)
+    private static let longSetter: @convention(c) (RCUserDefaults, Selector, CLong) -> Void = { _self, _cmd, value in
+        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
         _self.userDefaults.set(value, forKey: key)
     }
 
-    private static let longLongGetter: @convention(c) (_Self, Selector) -> CLongLong = { _self, _cmd in
+    private static let longLongGetter: @convention(c) (RCUserDefaults, Selector) -> CLongLong = { _self, _cmd in
         let key = defaultKeyForSelector(_cmd)
         let value = _self.userDefaults.integer(forKey: key)
         return CLongLong(value)
     }
 
-    private static let longLongSetter: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
-        let key = _Self.defaultKeyForSelector(_cmd)
+    private static let longLongSetter: @convention(c) (RCUserDefaults, Selector, CLongLong) -> Void = { _self, _cmd, value in
+        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
         _self.userDefaults.set(Int(value), forKey: key)
     }
 
-    private static let doubleGetter: @convention(c) (_Self, Selector) -> CDouble = { _self, _cmd in
+    private static let doubleGetter: @convention(c) (RCUserDefaults, Selector) -> CDouble = { _self, _cmd in
         let key = defaultKeyForSelector(_cmd)
         let value = _self.userDefaults.double(forKey: key)
         return CDouble(value)
     }
 
-    private static let doubleSetter: @convention(c) (_Self, Selector, CDouble) -> Void = { _self, _cmd, value in
-        let key = _Self.defaultKeyForSelector(_cmd)
+    private static let doubleSetter: @convention(c) (RCUserDefaults, Selector, CDouble) -> Void = { _self, _cmd, value in
+        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
         _self.userDefaults.set(Double(value), forKey: key)
     }
 
-    private static let floatGetter: @convention(c) (_Self, Selector) -> CFloat = { _self, _cmd in
+    private static let floatGetter: @convention(c) (RCUserDefaults, Selector) -> CFloat = { _self, _cmd in
         let key = defaultKeyForSelector(_cmd)
         let value = _self.userDefaults.float(forKey: key)
         return CFloat(value)
     }
 
-    private static let floatSetter: @convention(c) (_Self, Selector, CFloat) -> Void = { _self, _cmd, value in
-        let key = _Self.defaultKeyForSelector(_cmd)
+    private static let floatSetter: @convention(c) (RCUserDefaults, Selector, CFloat) -> Void = { _self, _cmd, value in
+        let key = RCUserDefaults.defaultKeyForSelector(_cmd)
         _self.userDefaults.set(value, forKey: key)
     }
 }
