@@ -89,6 +89,7 @@ extension RCUserDefaults {
 /// Getter and Setter Methods
 extension RCUserDefaults {
 
+    // block
     private static let objectGetter: @convention(c) (RCUserDefaults, Selector) -> Any? = { _userDefault, _cmd in
         let key = defaultKeyForSelector(_cmd)
         return _userDefault.userDefaults.object(forKey: key)
