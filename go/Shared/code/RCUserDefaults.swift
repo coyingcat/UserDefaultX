@@ -101,8 +101,7 @@ extension RCUserDefaults {
 
     private static let boolGetter: @convention(c) (RCUserDefaults, Selector) -> Bool = { _userDefault, _cmd in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        let value = _userDefault.userDefaults.bool(forKey: key)
-        return (value)
+        return _userDefault.userDefaults.bool(forKey: key)
     }
 
     private static let boolSetter: @convention(c) (RCUserDefaults, Selector, Bool) -> Void = { _userDefault, _cmd, value in
@@ -112,8 +111,7 @@ extension RCUserDefaults {
 
     private static let longGetter: @convention(c) (RCUserDefaults, Selector) -> CLong = { _userDefault, _cmd in
         let key = defaultKeyForSelector(_cmd)
-        let value = _userDefault.userDefaults.integer(forKey: key)
-        return (value)
+        return _userDefault.userDefaults.integer(forKey: key)
     }
 
     private static let longSetter: @convention(c) (RCUserDefaults, Selector, CLong) -> Void = { _userDefault, _cmd, value in
