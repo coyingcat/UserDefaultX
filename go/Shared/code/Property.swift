@@ -21,7 +21,7 @@ enum ObjCTypeEncoding {
 
     case unknown(String)
 
-    init(_ encoding: String) {
+    init(e encoding: String) {
         switch encoding {
         case "i": self = .int
         case "q": self = .longLong
@@ -51,7 +51,7 @@ struct Property {
     private(set) var customSetter: String?
 
     init(x property: objc_property_t) {
-        self.name = String(cString: property_getName(property))
+        name = String(cString: property_getName(property))
 
         var count: UInt32 = 0
         let attributeList = property_copyAttributeList(property, &count)!
@@ -74,16 +74,16 @@ struct Property {
                     value = value.replacingOccurrences(of: "r", with: "")
                 }
                 if classExists(n: value) {
-                    self.typeEncoding = ObjCTypeEncoding("@")
-                    self.type = getClass(n: value)
+                    typeEncoding = ObjCTypeEncoding(e: "@")
+                    type = getClass(n: value)
                 }
                 else {
-                    self.typeEncoding = ObjCTypeEncoding(value)
+                    typeEncoding = ObjCTypeEncoding(e: value)
                 }
             case "G":
-                self.customGetter = value
+                customGetter = value
             case "S":
-                self.customSetter = value
+                customSetter = value
             default: break
             }
         }
