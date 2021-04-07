@@ -19,7 +19,7 @@ DerivedData
 *.xcuserstate
 *.o
 
-*.xcodeproj/project.xcworkspace/xcuserdata/
+go/go.xcodeproj/project.xcworkspace/xcuserdata/jzd.xcuserdatad/UserInterfaceState.xcuserstate
 
 timeline.xctimeline
 .vscode
