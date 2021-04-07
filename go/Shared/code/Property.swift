@@ -14,11 +14,13 @@ enum ObjCTypeEncoding {
     case int
     case longLong
     case float
+    
     case double
     case bool
     case char
+    
     case object
-
+    case uInt8
     case unknown(String)
 
     init(e encoding: String) {
@@ -29,6 +31,7 @@ enum ObjCTypeEncoding {
         case "d": self = .double
         case "B": self = .bool
         case "c": self = .char
+        case "C": self = .uInt8
         case "@": self = .object
         default:
             self = .unknown(encoding)

@@ -48,7 +48,8 @@ extension RCUserDefaults {
             var getterImp: IMP!
             var setterImp: IMP!
             switch property.typeEncoding {
-            case .int, .longLong:
+            
+            case .int, .longLong, .uInt8:
                 getterImp = unsafeBitCast(RCUserDefaults.longGetter, to: IMP.self)
                 setterImp = unsafeBitCast(RCUserDefaults.longSetter, to: IMP.self)
             case .bool, .char:

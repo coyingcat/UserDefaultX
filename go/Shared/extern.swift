@@ -18,7 +18,7 @@ extension RCUserDefaults {
     @NSManaged var bool: Bool
     @NSManaged var bool2: Bool
 
-    @NSManaged var int: Int
+    @NSManaged var int: UInt8
     @NSManaged var int2: Int
 
     @NSManaged var double: Double
