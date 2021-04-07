@@ -12,18 +12,16 @@ class RCUserDefaults: NSObject {
 
     public static let standard = RCUserDefaults()
 
-    public let userDefaults: UserDefaults
+    public let userDefaults = UserDefaults.standard
 
-    private static var mapping: [String: Property] = [ : ]
+    private static var mapping = [String: Property]()
 
-    public init(userDefaults: UserDefaults = UserDefaults.standard) {
-        self.userDefaults = userDefaults
-
+    public init(placeHolder nan: Bool? = nil){
         super.init()
 
         exchangeAccessMethods()
     }
-
+    
     private static func defaultKeyForSelector(_ sel: Selector) -> String {
         let selName = NSStringFromSelector(sel)
         return mapping[selName]!.name
