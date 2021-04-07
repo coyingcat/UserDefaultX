@@ -63,7 +63,7 @@ extension RCUserDefaults {
                 getterImp = unsafeBitCast(RCUserDefaults.objectGetter, to: IMP.self)
                 setterImp = unsafeBitCast(RCUserDefaults.objectSetter, to: IMP.self)
             default:
-                NSException(name:NSExceptionName(rawValue: "exchangeAccessMethods"), reason:"Unsupported type of property", userInfo:nil).raise()
+                NSException(name:NSExceptionName(rawValue: "exchange Access Methods"), reason:"Unsupported type of property", userInfo:nil).raise()
             }
 
             let setterTypes = "v@:\(property.typeEncoding)"
