@@ -89,68 +89,68 @@ extension RCUserDefaults {
 /// Getter and Setter Methods
 extension RCUserDefaults {
 
-    private static let objectGetter: @convention(c) (RCUserDefaults, Selector) -> Any? = { _self, _cmd in
+    private static let objectGetter: @convention(c) (RCUserDefaults, Selector) -> Any? = { _userDefault, _cmd in
         let key = defaultKeyForSelector(_cmd)
-        return _self.userDefaults.object(forKey: key)
+        return _userDefault.userDefaults.object(forKey: key)
     }
 
-    private static let objectSetter: @convention(c) (RCUserDefaults, Selector, Any?) -> Void = { _self, _cmd, value in
+    private static let objectSetter: @convention(c) (RCUserDefaults, Selector, Any?) -> Void = { _userDefault, _cmd, value in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        _self.userDefaults.set(value, forKey: key)
+        _userDefault.userDefaults.set(value, forKey: key)
     }
 
-    private static let boolGetter: @convention(c) (RCUserDefaults, Selector) -> Bool = { _self, _cmd in
+    private static let boolGetter: @convention(c) (RCUserDefaults, Selector) -> Bool = { _userDefault, _cmd in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        let value = _self.userDefaults.bool(forKey: key)
+        let value = _userDefault.userDefaults.bool(forKey: key)
         return (value)
     }
 
-    private static let boolSetter: @convention(c) (RCUserDefaults, Selector, Bool) -> Void = { _self, _cmd, value in
+    private static let boolSetter: @convention(c) (RCUserDefaults, Selector, Bool) -> Void = { _userDefault, _cmd, value in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        _self.userDefaults.set(value, forKey: key)
+        _userDefault.userDefaults.set(value, forKey: key)
     }
 
-    private static let longGetter: @convention(c) (RCUserDefaults, Selector) -> CLong = { _self, _cmd in
+    private static let longGetter: @convention(c) (RCUserDefaults, Selector) -> CLong = { _userDefault, _cmd in
         let key = defaultKeyForSelector(_cmd)
-        let value = _self.userDefaults.integer(forKey: key)
+        let value = _userDefault.userDefaults.integer(forKey: key)
         return (value)
     }
 
-    private static let longSetter: @convention(c) (RCUserDefaults, Selector, CLong) -> Void = { _self, _cmd, value in
+    private static let longSetter: @convention(c) (RCUserDefaults, Selector, CLong) -> Void = { _userDefault, _cmd, value in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        _self.userDefaults.set(value, forKey: key)
+        _userDefault.userDefaults.set(value, forKey: key)
     }
 
-    private static let longLongGetter: @convention(c) (RCUserDefaults, Selector) -> CLongLong = { _self, _cmd in
+    private static let longLongGetter: @convention(c) (RCUserDefaults, Selector) -> CLongLong = { _userDefault, _cmd in
         let key = defaultKeyForSelector(_cmd)
-        let value = _self.userDefaults.integer(forKey: key)
+        let value = _userDefault.userDefaults.integer(forKey: key)
         return CLongLong(value)
     }
 
-    private static let longLongSetter: @convention(c) (RCUserDefaults, Selector, CLongLong) -> Void = { _self, _cmd, value in
+    private static let longLongSetter: @convention(c) (RCUserDefaults, Selector, CLongLong) -> Void = { _userDefault, _cmd, value in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        _self.userDefaults.set(Int(value), forKey: key)
+        _userDefault.userDefaults.set(Int(value), forKey: key)
     }
 
-    private static let doubleGetter: @convention(c) (RCUserDefaults, Selector) -> CDouble = { _self, _cmd in
+    private static let doubleGetter: @convention(c) (RCUserDefaults, Selector) -> CDouble = { _userDefault, _cmd in
         let key = defaultKeyForSelector(_cmd)
-        let value = _self.userDefaults.double(forKey: key)
+        let value = _userDefault.userDefaults.double(forKey: key)
         return CDouble(value)
     }
 
-    private static let doubleSetter: @convention(c) (RCUserDefaults, Selector, CDouble) -> Void = { _self, _cmd, value in
+    private static let doubleSetter: @convention(c) (RCUserDefaults, Selector, CDouble) -> Void = { _userDefault, _cmd, value in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        _self.userDefaults.set(Double(value), forKey: key)
+        _userDefault.userDefaults.set(Double(value), forKey: key)
     }
 
-    private static let floatGetter: @convention(c) (RCUserDefaults, Selector) -> CFloat = { _self, _cmd in
+    private static let floatGetter: @convention(c) (RCUserDefaults, Selector) -> CFloat = { _userDefault, _cmd in
         let key = defaultKeyForSelector(_cmd)
-        let value = _self.userDefaults.float(forKey: key)
+        let value = _userDefault.userDefaults.float(forKey: key)
         return CFloat(value)
     }
 
-    private static let floatSetter: @convention(c) (RCUserDefaults, Selector, CFloat) -> Void = { _self, _cmd, value in
+    private static let floatSetter: @convention(c) (RCUserDefaults, Selector, CFloat) -> Void = { _userDefault, _cmd, value in
         let key = RCUserDefaults.defaultKeyForSelector(_cmd)
-        _self.userDefaults.set(value, forKey: key)
+        _userDefault.userDefaults.set(value, forKey: key)
     }
 }
