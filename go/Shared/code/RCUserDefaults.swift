@@ -31,10 +31,10 @@ class RCUserDefaults: NSObject {
 /// Exchange access methods
 extension RCUserDefaults {
 
-    private func exchangeAccessMethods() {
+    private func exchangeAccessMethods(){
         let properties = RCUserDefaults.properties
 
-        for (_, property) in properties.enumerated() {
+        for property in properties{
 
             let getterKey = property.customGetter ?? property.name
             let setterKey = property.customSetter ?? objCDefaultSetterName(for: property.name)
