@@ -70,11 +70,11 @@ extension RCUserDefaults {
             let getterTypes = "\(property.typeEncoding)@:"
 
             setterTypes.withCString { typesCString in
-                _ = class_addMethod(self.classForCoder, setterSel, setterImp, typesCString)
+                _ = class_addMethod(classForCoder, setterSel, setterImp, typesCString)
             }
 
             getterTypes.withCString { typesCString in
-                _ = class_addMethod(self.classForCoder, getterSel, getterImp, typesCString)
+                _ = class_addMethod(classForCoder, getterSel, getterImp, typesCString)
             }
         }
     }
