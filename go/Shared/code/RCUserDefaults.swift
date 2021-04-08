@@ -37,8 +37,8 @@ extension RCUserDefaults {
 
         for property in properties{
 
-            let getterKey = property.customGetter ?? property.name
-            let setterKey = property.customSetter ?? objCDefaultSetterName(for: property.name)
+            let getterKey = property.name
+            let setterKey = objCDefaultSetterName(for: property.name)
             RCUserDefaults.mapping[getterKey] = property
             RCUserDefaults.mapping[setterKey] = property
 

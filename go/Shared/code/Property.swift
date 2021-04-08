@@ -58,14 +58,14 @@ struct Property {
 
         var count: UInt32 = 0
         let attributeList = property_copyAttributeList(property, &count)!
-
+        
         for i in 0..<Int(count) {
             let attribute = attributeList[i]
 
-            let name = String(cString: attribute.name)
+            let nick = String(cString: attribute.name)
             let value = String(cString: attribute.value)
-
-            switch name {
+            
+            switch nick {
             case "T":
                 var value = value
                 if value.hasPrefix("@\"") && value.hasSuffix("\"") { // id
@@ -76,16 +76,25 @@ struct Property {
                 else if value.hasPrefix("r") { // const
                     value = value.replacingOccurrences(of: "r", with: "")
                 }
+                
                 if classExists(n: value) {
+                    //  string
+                    //  stringOptional
+                    //  data
                     typeEncoding = ObjCTypeEncoding(e: "@")
                     type = getClass(n: value)
                 }
                 else {
+                    //  bool
+                    //  double
+                    print(name)
                     typeEncoding = ObjCTypeEncoding(e: value)
                 }
             case "G":
+                // 没走
                 customGetter = value
             case "S":
+                // 没走
                 customSetter = value
             default: break
             }

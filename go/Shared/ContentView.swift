@@ -19,6 +19,7 @@ struct ContentView: View {
         UserDefaults.std.name = "two"
         
         print(UserDefaults.std.name)
+
     }
     
 
