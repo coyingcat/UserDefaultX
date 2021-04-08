@@ -32,7 +32,7 @@ enum ObjCTypeEncoding {
         case "B": self = .bool
         case "c": self = .char
         case "C": self = .uInt8
-        case "@": self = .object
+        case "@": self = .object   // string
         default:
             self = .unknown(encoding)
         }
