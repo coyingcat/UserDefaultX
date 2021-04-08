@@ -355,7 +355,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dng.common.go;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dng.common.g;
 				PRODUCT_NAME = go;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -377,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dng.common.go;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dng.common.g;
 				PRODUCT_NAME = go;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

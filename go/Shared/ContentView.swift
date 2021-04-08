@@ -12,7 +12,7 @@ struct ContentView: View {
     
     init(){
 
-        UserDefaults.std.name = "one"
+      //  UserDefaults.std.name = "one"
         
         print(UserDefaults.std.name)
         

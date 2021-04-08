@@ -8,9 +8,9 @@
 import Foundation
 
 
+// Extensions must not contain stored properties
 
-
-extension RCUserDefaults {
+extension RCUserDefaults{
 
     @NSManaged var string: String
     @NSManaged var stringOptional: String?
