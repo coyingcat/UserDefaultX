@@ -77,12 +77,12 @@ struct Property {
                     value = value.replacingOccurrences(of: "r", with: "")
                 }
                 
-                if classExists(n: value) {
+                if value.classExists{
                     //  string
                     //  stringOptional
                     //  data
                     typeEncoding = ObjCTypeEncoding(e: "@")
-                    type = getClass(n: value)
+                    type = value.getClass
                 }
                 else {
                     //  bool
@@ -120,10 +120,16 @@ extension NSObject {
     }
 }
 
-func classExists(n name: String) -> Bool {
-    return objc_getClass(name.cString(using: .utf8)!) != nil
-}
 
-func getClass(n name: String) -> NSObject.Type? {
-    return objc_getClass(name.cString(using: .utf8)!) as? NSObject.Type
+extension String{
+    
+    var classExists: Bool {
+        return objc_getClass(cString(using: .utf8)!) != nil
+    }
+
+    var getClass: NSObject.Type? {
+        return objc_getClass(cString(using: .utf8)!) as? NSObject.Type
+    }
+    
+    
 }
