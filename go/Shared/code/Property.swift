@@ -87,7 +87,7 @@ struct Property {
                 else {
                     //  bool
                     //  double
-                    print(name)
+                    // print(name)
                     typeEncoding = ObjCTypeEncoding(e: value)
                 }
             case "G":
@@ -111,9 +111,9 @@ extension NSObject {
         guard let propertyList = class_copyPropertyList(self, &count) else { return [] }
 
         var properties = [Property]()
-
-        for i in 0..<count {
-            properties.append(Property(x: propertyList[Int(i)]))
+        let cnt = Int(count)
+        for i in 0..<cnt{
+            properties.append(Property(x: propertyList[i]))
         }
         free(propertyList)
         return properties
