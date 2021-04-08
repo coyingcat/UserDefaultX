@@ -45,14 +45,6 @@ struct Property {
 
     private(set) var typeEncoding = ObjCTypeEncoding.unknown("?")
 
-    private(set) var type: NSObject.Type?
-
-    /// The property defines a custom getter selector name. The name follows the G (for example, GcustomGetter,).
-    private(set) var customGetter: String?
-
-    /// The property defines a custom setter selector name. The name follows the S (for example, ScustomSetter:,).
-    private(set) var customSetter: String?
-
     init(x property: objc_property_t) {
         name = String(cString: property_getName(property))
 
@@ -82,7 +74,6 @@ struct Property {
                     //  stringOptional
                     //  data
                     typeEncoding = ObjCTypeEncoding(e: "@")
-                    type = value.getClass
                 }
                 else {
                     //  bool
@@ -90,14 +81,6 @@ struct Property {
                     // print(name)
                     typeEncoding = ObjCTypeEncoding(e: value)
                 }
-            case "G":
-                // G, Getter
-                // 没走
-                customGetter = value
-            case "S":
-                // S, Setter
-                // 没走
-                customSetter = value
             default: break
             }
         }
