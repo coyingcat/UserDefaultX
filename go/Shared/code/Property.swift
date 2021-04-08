@@ -91,9 +91,11 @@ struct Property {
                     typeEncoding = ObjCTypeEncoding(e: value)
                 }
             case "G":
+                // G, Getter
                 // 没走
                 customGetter = value
             case "S":
+                // S, Setter
                 // 没走
                 customSetter = value
             default: break
